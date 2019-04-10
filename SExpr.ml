@@ -19,9 +19,9 @@ type state =
 
 let string_of_charlist cl =
   let n, cl = List.fold_left (fun (n,acc) c -> (succ n, c::acc)) (0,[]) cl in
-  let s = String.create n in
-  let _ = List.fold_left (fun i c -> String.unsafe_set s i c; succ i) 0 cl in
-  (s)
+  let s = Bytes.create n in
+  let _ = List.fold_left (fun i c -> Bytes.unsafe_set s i c; succ i) 0 cl in
+  (Bytes.unsafe_to_string s)
 
 let atom cl =
   Atom(string_of_charlist cl)
